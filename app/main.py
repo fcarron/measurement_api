@@ -1,5 +1,5 @@
 from typing import List
-
+import os 
 import uvicorn
 from fastapi import Depends, FastAPI, HTTPException, Header
 from sqlalchemy.orm import Session
@@ -10,6 +10,8 @@ from .database import SessionLocal, engine
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+secrect_key = os.environ.get("SECRECT_KEY", "12345")
 
 
 # Dependency
@@ -22,7 +24,7 @@ def get_db():
 
 
 async def verify_key(X_Secret_Key: str = Header(...)):
-    if X_Secret_Key != "1234":
+    if X_Secret_Key != secrect_key:
         raise HTTPException(status_code=400, detail="X-Secret-Key invalid")
     return X_Secret_Key
 

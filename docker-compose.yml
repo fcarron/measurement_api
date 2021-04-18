@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.8"
 services:
   web:
     build: .
@@ -6,3 +6,6 @@ services:
       - "8000:8000"
     environment:
       - PORT=8000
+      - MAX_WORKERS=1
+      - DATABASE_PATH=measurement.db
+      - SECRECT_KEY=12345

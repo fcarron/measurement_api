@@ -2,15 +2,6 @@ from typing import List
 from datetime import datetime
 from pydantic import BaseModel, validator
 
-# d = {
-#     "time": "08.03.2021   13:45:49",
-#     "measurement": [
-#         {"type": "T", "place": "k\\u00f6niz_bureau", "value": 23.25},
-#         {"type": "T", "place": "capi4_CPU", "value": 40.9},
-#     ],
-# }
-
-
 class MeasurementBase(BaseModel):
     type: str
     value: float
